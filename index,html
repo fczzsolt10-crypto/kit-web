@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Számkitaláló játék</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .game {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            padding: 5px;
+            width: 80px;
+        }
+        button {
+            padding: 6px 12px;
+            margin-left: 5px;
+        }
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game">
+    <h2>Számkitaláló játék 🎯</h2>
+    <p>Gondoltam egy számra 1 és 100 között.</p>
+
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="checkGuess()">Tippelés</button>
+
+    <p id="message"></p>
+</div>
+
+<script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+        const guess = Number(document.getElementById("guess").value);
+        const message = document.getElementById("message");
+        attempts++;
+
+        if (!guess) {
+            message.textContent = "Adj meg egy számot!";
+        } else if (guess < randomNumber) {
+            message.textContent = "Túl kicsi 📉";
+        } else if (guess > randomNumber) {
+            message.textContent = "Túl nagy 📈";
+        } else {
+            message.textContent = `Eltaláltad! 🎉 Próbálkozások száma: ${attempts}`;
+        }
+    }
+</script>
+
+</body>
+</html>
